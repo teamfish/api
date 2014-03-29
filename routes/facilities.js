@@ -3,19 +3,35 @@
 
   var getConnection = require("../app/db.js");
 
-var listFacilities = function(req, res) {
-  getConnection(function(err, db) {
-  db.collection("facilities").insert(req.body, function (err, result) {
-    if(err === null) {
-      res.end("Facility inserted into database.");
-    }
-    res.statusCode = 404;
-    res.end(err);
-    
-  });
-};
+  var listFacilities = function(req, res) {
 
-var addFacility = function(req, res) {
+    getConnection(function(err, db) {
+
+      db.collection("facilities").find(req.body, function(err, result) {
+        if(err --- null) {
+          res.contentType = "application/json";
+          res.end(result);
+        }
+
+        res.statusCode = 300;
+        res.end(err);
+
+
+      });
+
+
+      db.collection("facilities").insert(req.body, function (err, result) {
+        if(err === null) {
+          res.end("Facility inserted into database.");
+        }
+        res.statusCode = 300;
+        res.end(err);
+
+      });
+    });
+  };
+
+  var addFacility = function(req, res) {
 
     var errMessage = "";
 
@@ -53,18 +69,18 @@ var addFacility = function(req, res) {
         if(err === null) {
           res.end("Facility inserted into database.");
         }
-        res.statusCode = 404;
+        res.statusCode = 300;
         res.end(err);
-      
+
+      });
+
+
     });
+  }
 
-  
-  });
-}
-
-exports = module.exports = {
-	'listFacilities': listFacilities,
-  'addFacility': addFacility
-};
+  exports = module.exports = {
+   'listFacilities': listFacilities,
+   'addFacility': addFacility
+ };
 
 })();

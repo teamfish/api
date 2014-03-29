@@ -11,21 +11,21 @@ var getConnection= function getConnection(callback)
     else
     {
            //placeholder: modify this-should come from a configuration source
-        var connURL = "mongodb://localhost:27017/fishtest"; 
+        var connURL = "mongodb://localhost:27017/fishtest";
         MongoClient.connect(connURL,function(err,db){
 
             if(err)
-                log("Error creating new connection "+err);
+                console.log("Error creating new connection " + err);
             else
             {
-                db_singleton=db;    
-                log("created new connection");
+                db_singleton=db;
+                console.log("created new connection");
 
             }
             callback(err,db_singleton);
             return;
         });
     }
-}
+};
 
 module.exports = getConnection;

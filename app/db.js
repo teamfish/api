@@ -11,7 +11,7 @@ var getConnection= function getConnection(callback)
     else
     {
            //placeholder: modify this-should come from a configuration source
-        var connURL = "mongodb://localhost:27017/fishTest"; 
+        var connURL = "mongodb://localhost:27017/fishtest"; 
         MongoClient.connect(connURL,function(err,db){
 
             if(err)
